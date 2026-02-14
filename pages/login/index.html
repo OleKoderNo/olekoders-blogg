@@ -4,26 +4,45 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Login</title>
-		<link rel="stylesheet" href="../olewindcss/olewind.css" />
-		<script defer src="../olewindcss/olewind.js"></script>
+
+		<link rel="stylesheet" href="/assets/css/olewind.css" />
+		<script defer src="/assets/js/olewind.js"></script>
+
+		<script type="module" defer src="./login.js"></script>
 	</head>
-	<body>
-		<div>
-			<h1>Sign in</h1>
-			<form>
-				<div>
-					<label for="">Email</label>
-					<input type="email" />
-				</div>
-				<div>
-					<label for="">Password</label>
-					<input type="password" placeholder="•••••••••••••••" />
+
+	<body class="min-h-screen flex items-center justify-center bg-cloud p-4">
+		<div class="w-full max-w-sm bg-white p-8 rounded-lg border">
+			<h1 class="text-4xl font-bold text-charcoal text-center mb-6">Sign in</h1>
+
+			<form id="login-form" class="flex" style="flex-direction: column; gap: 1rem">
+				<div class="flex" style="flex-direction: column">
+					<label class="text-base font-medium text-charcoal mb-2" for="email">Email</label>
+					<input
+						id="email"
+						type="email"
+						class="max-w-sm px-4 py-2 border rounded-md"
+						placeholder="you@example.com"
+					/>
 				</div>
 
-				<input type="submit" value="Log in" />
+				<div class="flex" style="flex-direction: column">
+					<label class="text-base font-medium text-charcoal mb-2" for="password">Password</label>
+					<input
+						id="password"
+						type="password"
+						class="max-w-sm px-4 py-2 border rounded-md"
+						placeholder="•••••••••••••••"
+					/>
+				</div>
+
+				<div id="login-button" class="mt-4"></div>
 			</form>
 
-			<p>Don't have an account? <a href="#">Sign up</a></p>
+			<p class="text-base text-charcoal text-center mt-6">
+				Don't have an account?
+				<a class="text-dusty-blue font-bold" href="#">Sign up</a>
+			</p>
 		</div>
 	</body>
 </html>
