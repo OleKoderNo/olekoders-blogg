@@ -62,16 +62,28 @@ body {
 	min-height: 100vh;
 }
 
+/* ===== Width utilities ===== */
 .w-full {
 	width: 100%;
 }
 
-/* Useful for login/card layouts */
+.max-w-xs {
+	max-width: 20rem; /* 320px */
+}
+
+.max-w-sm {
+	max-width: 24rem; /* 384px */
+}
+
+.max-w-md {
+	max-width: 28rem; /* 448px */
+}
+
 .text-center {
 	text-align: center;
 }
 
-/* ===== Spacing (ONLY 2/4/6/8) ===== */
+/* ===== Spacing ===== */
 /* Padding */
 .p-2 {
 	padding: 0.5rem;
@@ -129,7 +141,6 @@ body {
 	padding-bottom: 2rem;
 }
 
-/* Missing padding directions (still ONLY 2/4/6/8) */
 .pt-2 {
 	padding-top: 0.5rem;
 }
@@ -315,7 +326,7 @@ body {
 	margin-left: 2rem;
 }
 
-/* Typography */
+/* ===== Typography ===== */
 .text-small {
 	font-size: 0.875rem;
 } /* 14px */
