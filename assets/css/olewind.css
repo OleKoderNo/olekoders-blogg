@@ -3,25 +3,55 @@ body {
 }
 
 /* Layout */
-.w-full {
-	width: 100%;
+.block {
+	display: block;
 }
 
-/* Flex */
+.inline-block {
+	display: inline-block;
+}
+
 .flex {
 	display: flex;
+}
+
+.inline-flex {
+	display: inline-flex;
+}
+
+.hidden {
+	display: none;
+}
+
+.items-start {
+	align-items: flex-start;
 }
 
 .items-center {
 	align-items: center;
 }
 
+.items-end {
+	align-items: flex-end;
+}
+
+.justify-start {
+	justify-content: flex-start;
+}
+
 .justify-center {
 	justify-content: center;
 }
 
-.inline-flex {
-	display: inline-flex;
+.justify-between {
+	justify-content: space-between;
+}
+
+.min-h-screen {
+	min-height: 100vh;
+}
+.w-full {
+	width: 100%;
 }
 
 /* Spacing */
