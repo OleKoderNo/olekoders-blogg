@@ -1,3 +1,14 @@
+/* =========================
+   OleWindCSS (core)
+   Palette:
+   Charcoal     #2B2B2B
+   Cloud Gray   #BFC5C9
+   Dusty Blue   #6B8BA4
+   Olive Accent #8A9A5B
+   Pure White   #FFFFFF
+   ========================= */
+
+/* Base */
 body {
 	margin: 0;
 }
@@ -50,11 +61,18 @@ body {
 .min-h-screen {
 	min-height: 100vh;
 }
+
 .w-full {
 	width: 100%;
 }
 
-/* Spacing */
+/* Useful for login/card layouts */
+.text-center {
+	text-align: center;
+}
+
+/* ===== Spacing (ONLY 2/4/6/8) ===== */
+/* Padding */
 .p-2 {
 	padding: 0.5rem;
 }
@@ -69,24 +87,6 @@ body {
 
 .p-8 {
 	padding: 2rem;
-}
-
-.py-2 {
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-}
-
-.py-4 {
-	padding-top: 1rem;
-	padding-bottom: 1rem;
-}
-.py-6 {
-	padding-top: 1.5rem;
-	padding-bottom: 1.5rem;
-}
-.py-8 {
-	padding-top: 2rem;
-	padding-bottom: 2rem;
 }
 
 .px-2 {
@@ -109,6 +109,92 @@ body {
 	padding-right: 2rem;
 }
 
+.py-2 {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+
+.py-4 {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+
+.py-6 {
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+}
+
+.py-8 {
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+}
+
+/* Missing padding directions (still ONLY 2/4/6/8) */
+.pt-2 {
+	padding-top: 0.5rem;
+}
+
+.pt-4 {
+	padding-top: 1rem;
+}
+
+.pt-6 {
+	padding-top: 1.5rem;
+}
+
+.pt-8 {
+	padding-top: 2rem;
+}
+
+.pr-2 {
+	padding-right: 0.5rem;
+}
+
+.pr-4 {
+	padding-right: 1rem;
+}
+
+.pr-6 {
+	padding-right: 1.5rem;
+}
+
+.pr-8 {
+	padding-right: 2rem;
+}
+
+.pb-2 {
+	padding-bottom: 0.5rem;
+}
+
+.pb-4 {
+	padding-bottom: 1rem;
+}
+
+.pb-6 {
+	padding-bottom: 1.5rem;
+}
+
+.pb-8 {
+	padding-bottom: 2rem;
+}
+
+.pl-2 {
+	padding-left: 0.5rem;
+}
+
+.pl-4 {
+	padding-left: 1rem;
+}
+
+.pl-6 {
+	padding-left: 1.5rem;
+}
+
+.pl-8 {
+	padding-left: 2rem;
+}
+
+/* Margin */
 .m-2 {
 	margin: 0.5rem;
 }
@@ -123,24 +209,6 @@ body {
 
 .m-8 {
 	margin: 2rem;
-}
-
-.my-2 {
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
-}
-
-.my-4 {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-}
-.my-6 {
-	margin-top: 1.5rem;
-	margin-bottom: 1.5rem;
-}
-.my-8 {
-	margin-top: 2rem;
-	margin-bottom: 2rem;
 }
 
 .mx-2 {
@@ -163,30 +231,114 @@ body {
 	margin-right: 2rem;
 }
 
+.my-2 {
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.my-4 {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.my-6 {
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.my-8 {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.mt-2 {
+	margin-top: 0.5rem;
+}
+
+.mt-4 {
+	margin-top: 1rem;
+}
+
+.mt-6 {
+	margin-top: 1.5rem;
+}
+
+.mt-8 {
+	margin-top: 2rem;
+}
+
+.mr-2 {
+	margin-right: 0.5rem;
+}
+
+.mr-4 {
+	margin-right: 1rem;
+}
+
+.mr-6 {
+	margin-right: 1.5rem;
+}
+
+.mr-8 {
+	margin-right: 2rem;
+}
+
+.mb-2 {
+	margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+	margin-bottom: 1rem;
+}
+
+.mb-6 {
+	margin-bottom: 1.5rem;
+}
+
+.mb-8 {
+	margin-bottom: 2rem;
+}
+
+.ml-2 {
+	margin-left: 0.5rem;
+}
+
+.ml-4 {
+	margin-left: 1rem;
+}
+
+.ml-6 {
+	margin-left: 1.5rem;
+}
+
+.ml-8 {
+	margin-left: 2rem;
+}
+
 /* Typography */
 .text-small {
-	font-size: 0.875rem; /* 14px */
-}
+	font-size: 0.875rem;
+} /* 14px */
 
 .text-base {
-	font-size: 1rem; /* 16px */
-}
+	font-size: 1rem;
+} /* 16px */
 
 .text-large {
-	font-size: 1.25rem; /* 20px */
-}
+	font-size: 1.25rem;
+} /* 20px */
 
 .text-2xl {
-	font-size: 1.5rem; /* 24px */
-}
+	font-size: 1.5rem;
+} /* 24px */
 
 .text-3xl {
-	font-size: 1.75rem; /* 28px */
-}
+	font-size: 1.75rem;
+} /* 28px */
 
 .text-4xl {
-	font-size: 2rem; /* 32px */
-}
+	font-size: 2rem;
+} /* 32px */
 
 .font-small {
 	font-weight: 400;
@@ -200,8 +352,8 @@ body {
 	font-weight: 700;
 }
 
-/* Colors */
-/* background color */
+/* ===== Colors (Palette) ===== */
+/* Background */
 .bg-charcoal {
 	background: #2b2b2b;
 }
@@ -222,7 +374,7 @@ body {
 	background: #ffffff;
 }
 
-/* text color */
+/* Text */
 .text-charcoal {
 	color: #2b2b2b;
 }
@@ -241,4 +393,47 @@ body {
 
 .text-white {
 	color: #ffffff;
+}
+
+/* Borders / Radius */
+.border {
+	border: 1px solid #bfc5c9;
+}
+
+.border-charcoal {
+	border-color: #2b2b2b;
+}
+
+.border-cloud {
+	border-color: #bfc5c9;
+}
+
+.border-dusty-blue {
+	border-color: #6b8ba4;
+}
+
+.border-olive {
+	border-color: #8a9a5b;
+}
+
+/* Radius */
+.rounded-sm {
+	border-radius: 0.25rem;
+}
+
+.rounded-md {
+	border-radius: 0.375rem;
+}
+
+.rounded-lg {
+	border-radius: 0.5rem;
+}
+
+.rounded-xl {
+	border-radius: 0.75rem;
+}
+
+/* Cursior */
+.cursor-pointer {
+	cursor: pointer;
 }
