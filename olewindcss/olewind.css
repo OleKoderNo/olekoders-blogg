@@ -2,6 +2,24 @@ body {
 	margin: 0;
 }
 
+/* Layout */
+.w-full {
+	width: 100%;
+}
+
+/* Flex */
+.flex {
+	display: flex;
+}
+
+.items-center {
+	align-items: center;
+}
+
+.justify-center {
+	justify-content: center;
+}
+
 /* Typography */
 .text-small {
 	font-size: 0.875rem; /* 14px */
