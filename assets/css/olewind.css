@@ -370,6 +370,24 @@ body {
 	margin-left: 2rem;
 }
 
+/* Gap */
+
+.gap-2 {
+	gap: 0.5rem;
+}
+
+.gap-4 {
+	gap: 1rem;
+}
+
+.gap-6 {
+	gap: 1.5rem;
+}
+
+.gap-8 {
+	gap: 2rem;
+}
+
 /* ===== Typography ===== */
 .text-small {
 	font-size: 0.875rem;
