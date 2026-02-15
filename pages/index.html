@@ -3,89 +3,21 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>OleKoder's Blogg</title>
-		<link rel="stylesheet" href="../assets/css/olewind.css" />
-		<script defer src="../assets/js/olewind.js"></script>
-		<script type="module" defer src="./index.js"></script>
+		<title>Document</title>
+		<link rel="stylesheet" href="olewindcss/olewind.css" />
+		<script defer src="olewindcss/olewind.js"></script>
 	</head>
-	<body class="bg-white text-charcoal">
-		<div class="w-full max-w-page mx-auto p-8">
-			<header class="flex justify-center my-6">
-				<div class="w-full max-w-hero text-center">
-					<h1 class="text-3xl font-bold">OleKoder's Blogg</h1>
+	<body>
+		<h1>OleKoder's Blogg</h1>
+		<section>
+			<h2>Last blogg posts:</h2>
+			<div>
+				<div>
+					<h3>Something cool</h3>
+					<p>Here I did something cool</p>
+					<a href="">Read more</a>
 				</div>
-			</header>
-			<section class="my-8">
-				<div class="bg-white border rounded-lg p-8">
-					<h2 class="text-2xl font-bold text-center mb-6">Featured</h2>
-					<div class="w-full mx-auto relative max-w-page">
-						<button
-							type="button"
-							class="absolute top-50 translate-y--50 bg-white border rounded-md px-4 py-2 cursor-pointer left-4"
-							ow="md:left-0 md:-ml-6"
-							aria-label="Previous"
-						>
-							←
-						</button>
-						<button
-							type="button"
-							class="absolute top-50 translate-y--50 bg-white border rounded-md px-4 py-2 cursor-pointer right-4"
-							ow="md:right-0 md:-mr-6"
-							aria-label="Next"
-						>
-							→
-						</button>
-						<div class="bg-white border rounded-lg p-8 mx-auto max-w-feature-inner">
-							<img
-								src="../assets/images/stock.jpg"
-								alt="Featured post"
-								class="w-full border rounded-md object-cover h-feature"
-							/>
-							<div id="featured-btn" class="w-full flex justify-center my-6"></div>
-							<div class="flex items-center justify-center gap-4">
-								<span class="dot bg-charcoal"></span>
-								<span class="dot bg-cloud"></span>
-								<span class="dot bg-cloud"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<section class="my-8 bg-white border rounded-lg p-6">
-				<h2 class="text-2xl font-bold text-center mb-6">Last blogg posts</h2>
-				<div class="flex flex-wrap justify-center gap-2">
-					<article class="w-full max-w-card bg-white border rounded-lg p-2">
-						<img
-							src="../assets/images/stock.jpg"
-							alt="Post image"
-							class="w-full border rounded-md object-cover h-card"
-						/>
-						<h3 class="text-large font-bold my-4">Something cool</h3>
-						<p class="text-base font-medium my-4">Here I did something cool.</p>
-						<div id="post-btn-1"></div>
-					</article>
-					<article class="w-full max-w-card bg-white border rounded-lg p-2">
-						<img
-							src="../assets/images/stock.jpg"
-							alt="Post image"
-							class="w-full border rounded-md object-cover h-card"
-						/>
-						<h3 class="text-large font-bold my-4">Another post</h3>
-						<p class="text-base font-medium my-4">Short description of the post.</p>
-						<div id="post-btn-2"></div>
-					</article>
-					<article class="w-full max-w-card bg-white border rounded-lg p-2">
-						<img
-							src="../assets/images/stock.jpg"
-							alt="Post image"
-							class="w-full border rounded-md object-cover h-card"
-						/>
-						<h3 class="text-large font-bold my-4">Third post</h3>
-						<p class="text-base font-medium my-4">Another short teaser text.</p>
-						<div id="post-btn-3"></div>
-					</article>
-				</div>
-			</section>
-		</div>
+			</div>
+		</section>
 	</body>
 </html>

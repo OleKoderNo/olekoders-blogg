@@ -8,7 +8,7 @@ export function SubmitButton({ label, variant = "primary", size = "md", extra = 
 
 function baseButton(tag, { href, label, variant, size, extra, type }) {
 	const base =
-		"inline-flex items-center justify-center font-bold cursor-pointer rounded-md text-center no-underline";
+		"inline-flex items-center justify-center font-bold cursor-pointer rounded-md text-center";
 
 	const variants = {
 		primary: "bg-olive text-white",

@@ -10,16 +10,6 @@ const BREAKPOINTS = {
 const GROUPS = {
 	bg: /^bg-/,
 	text: /^text-/,
-	display: /^(block|inline-block|inline|flex|inline-flex|grid|inline-grid|hidden)$/, //checks for all possible display statmenets
-	justify: /^justify-(start|center|end|between|around|evenly)$/, //checks for all possible justify statements
-	items: /^items-(start|center|end|stretch|baseline)$/, //checks for all possible items statements
-	position: /^(static|relative|absolute|fixed|sticky)$/,
-	left: /^left-/,
-	right: /^right-/,
-	top: /^top-/,
-	ml: /^-?ml-/,
-	mr: /^-?mr-/,
-	translateY: /^translate-y-/,
 };
 
 function parseOw(value) {
