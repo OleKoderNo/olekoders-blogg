@@ -79,8 +79,48 @@ body {
 	max-width: 28rem; /* 448px */
 }
 
+.max-w-page {
+	max-width: 64rem;
+}
+
+.max-w-hero {
+	max-width: 40rem;
+}
+
+.max-w-card {
+	max-width: 18rem;
+}
+
 .text-center {
 	text-align: center;
+}
+
+/* positioning */
+.relative {
+	position: relative;
+}
+.absolute {
+	position: absolute;
+}
+.top-50 {
+	top: 50%;
+}
+.left-0 {
+	left: 0;
+}
+.right-0 {
+	right: 0;
+}
+.translate-y--50 {
+	transform: translateY(-50%);
+}
+
+/* arrow nudge */
+.-ml-6 {
+	margin-left: -1.5rem;
+}
+.-mr-6 {
+	margin-right: -1.5rem;
 }
 
 /* ===== Spacing ===== */
@@ -220,6 +260,10 @@ body {
 
 .m-8 {
 	margin: 2rem;
+}
+
+.mx-auto {
+	margin: 0 auto;
 }
 
 .mx-2 {
