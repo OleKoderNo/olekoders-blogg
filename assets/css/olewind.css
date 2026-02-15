@@ -30,8 +30,20 @@ body {
 	display: flex;
 }
 
+.flex-row {
+	flex-direction: row;
+}
+
+.flex-col {
+	flex-direction: column;
+}
+
 .inline-flex {
 	display: inline-flex;
+}
+
+.flex-wrap {
+	flex-wrap: wrap;
 }
 
 .hidden {
@@ -134,12 +146,12 @@ body {
 }
 
 /* Font weights */
-.font-small {
+.font-normal {
 	font-weight: 400;
 }
 
 .font-medium {
-	font-weight: 500;
+	font-weight: 600;
 }
 
 .font-bold {
