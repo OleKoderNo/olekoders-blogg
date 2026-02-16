@@ -496,6 +496,10 @@ body {
 	background: #ffffff;
 }
 
+.bg-off-white {
+	background: #fafafa;
+}
+
 /* Text */
 .text-charcoal {
 	color: #2b2b2b;
@@ -515,6 +519,10 @@ body {
 
 .text-white {
 	color: #ffffff;
+}
+
+.text-off-white {
+	background: #fafafa;
 }
 
 /* =========================
