@@ -50,6 +50,10 @@ body {
 	display: none;
 }
 
+.overflow-hidden {
+	overflow: hidden;
+}
+
 /* Flex alignment */
 .items-start {
 	align-items: flex-start;
