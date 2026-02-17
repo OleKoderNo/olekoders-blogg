@@ -611,6 +611,10 @@ body {
 	text-decoration: none;
 }
 
+.underline {
+	text-decoration: underline;
+}
+
 /* =========================
    Interaction
    ========================= */
