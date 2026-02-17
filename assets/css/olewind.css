@@ -189,6 +189,14 @@ body {
 	position: absolute;
 }
 
+.object-cover {
+	object-fit: cover;
+}
+
+.object-center {
+	object-position: center;
+}
+
 .top-50 {
 	top: 50%;
 }
