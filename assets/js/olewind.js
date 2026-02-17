@@ -120,7 +120,6 @@ function setAppliedSet(el, key, set) {
 // Apply base (non-hover) classes
 // -------------------------------------
 function applyBaseOleWind(el, width) {
-	// FIX: className typo
 	if (!el.dataset.owBase) el.dataset.owBase = el.className || "";
 	el.className = el.dataset.owBase;
 
@@ -134,7 +133,6 @@ function applyBaseOleWind(el, width) {
 		removeConflictsWithinElement(el, cls);
 		el.classList.add(cls);
 
-		// FIX: Set.add
 		baseApplied.add(cls);
 	}
 
@@ -177,7 +175,6 @@ function clearHover(el) {
 		el.classList.remove(cls);
 	}
 
-	// FIX: new Set()
 	setAppliedSet(el, "Hover", new Set());
 
 	applyBaseOleWind(el, window.innerWidth);
