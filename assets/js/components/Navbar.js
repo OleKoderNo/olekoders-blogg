@@ -19,7 +19,7 @@ export function Navbar() {
 
 	// Nav wrapper
 	const nav = document.createElement("header");
-	nav.className = "w-full border";
+	nav.className = "w-full border-b";
 
 	// layout container
 	const inner = document.createElement("div");
