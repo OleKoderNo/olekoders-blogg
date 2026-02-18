@@ -28,6 +28,8 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 	setupFeaturedCarousel(featured);
 	renderPostsGrid(rest);
+
+	window.applyOleWind();
 });
 
 // Featured carosel
