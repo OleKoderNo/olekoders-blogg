@@ -560,6 +560,22 @@ body {
 	border: 1px solid #bfc5c9;
 }
 
+.border-t {
+	border-top: 1px solid #bfc5c9;
+}
+
+.border-r {
+	border-right: 1px solid #bfc5c9;
+}
+
+.border-b {
+	border-bottom: 1px solid #bfc5c9;
+}
+
+.border-l {
+	border-left: 1px solid #bfc5c9;
+}
+
 .border-charcoal {
 	border-color: #2b2b2b;
 }
