@@ -17,6 +17,11 @@ function getBasePath() {
 export function Navbar() {
 	const base = getBasePath();
 
+	// Check user state
+	const token = localStorage.getItem("accessToken");
+	const profileName = localStorage.getItem("profileName");
+	const isLoggedIn = Boolean(token);
+
 	// Nav wrapper
 	const nav = document.createElement("header");
 	nav.className = "w-full border-b";
@@ -68,6 +73,28 @@ export function Navbar() {
 	randomLink.className = "text-charcoal no-underline";
 	randomLink.setAttribute("ow", "hover:underline");
 
+	// Display if logged in (desktop)
+	const loggedInText = document.createElement("span");
+	loggedInText.className = "text-small font-medium text-charcoal";
+	loggedInText.textContent = `Logged into: ${profileName || "User"}`;
+
+	// Logout button (desktop)
+	const logoutBtn = LinkButton({
+		href: `${base}index.html`,
+		label: "Logout",
+		variant: "danger",
+		size: "sm",
+	});
+
+	// Logout button (mobile)
+	const logoutBtnMobile = LinkButton({
+		href: `${base}index.html`,
+		label: "Logout",
+		variant: "danger",
+		size: "md",
+		extra: "px-5 py-3 max-w-sm",
+	});
+
 	// Authenitcation buttons (desktop)
 	const loginBtn = LinkButton({
 		href: `${base}pages/login/index.html`,
@@ -100,13 +127,39 @@ export function Navbar() {
 		extra: "px-5 py-3 max-w-sm",
 	});
 
-	// Desktop navbar
-	actions.append(homeLink.cloneNode(true), randomLink.cloneNode(true), loginBtn, signupBtn);
+	//Logout logic
+	function doLogout(e) {
+		e.preventDefault();
+		localStorage.removeItem("accessToken");
+		localStorage.removeItem("apiKey");
+		localStorage.removeItem("profileName");
+		localStorage.removeItem("profileEmail");
+		window.location.href = `${base}index.html`;
+	}
 
-	// Mobile dropdown layout
+	// Bind logout clicks
+	logoutBtn.addEventListener("click", doLogout);
+	logoutBtnMobile.addEventListener("click", doLogout);
+
+	// Desktop navbar (always show links)
+	actions.append(homeLink.cloneNode(true), randomLink.cloneNode(true));
+
+	// Mobile dropdown layout (always show links)
 	const mobileStack = document.createElement("div");
 	mobileStack.className = "flex flex-col gap-4 items-center";
-	mobileStack.append(homeLink, randomLink, loginBtnMobile, signupBtnMobile);
+	mobileStack.append(homeLink, randomLink);
+
+	// If logged in: show name + logout, else show login/signup
+	if (isLoggedIn) {
+		actions.append(loggedInText, logoutBtn);
+
+		const mobileLoggedInText = loggedInText.cloneNode(true);
+		mobileStack.append(mobileLoggedInText, logoutBtnMobile);
+	} else {
+		actions.append(loginBtn, signupBtn);
+		mobileStack.append(loginBtnMobile, signupBtnMobile);
+	}
+
 	mobileMenu.append(mobileStack);
 
 	// Toggle dropdown
