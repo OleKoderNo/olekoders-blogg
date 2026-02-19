@@ -1,5 +1,6 @@
 // Import reusable link buttons
 import { LinkButton } from "./Button.js";
+import { isLoggedIn } from "/assets/api/guard.js";
 
 //Calculate relative path to site root
 function getBasePath() {
@@ -18,9 +19,8 @@ export function Navbar() {
 	const base = getBasePath();
 
 	// Check user state
-	const token = localStorage.getItem("accessToken");
-	const profileName = localStorage.getItem("profileName");
-	const isLoggedIn = Boolean(token);
+	const loggedIn = isLoggedIn();
+	const profileName = localStorage.getItem("profileName") || "User";
 
 	// Nav wrapper
 	const nav = document.createElement("header");
@@ -76,11 +76,11 @@ export function Navbar() {
 	// Display if logged in (desktop)
 	const loggedInText = document.createElement("span");
 	loggedInText.className = "text-small font-medium text-charcoal";
-	loggedInText.textContent = `Logged into: ${profileName || "User"}`;
+	loggedInText.textContent = `Logged into: ${profileName}`;
 
 	// Logout button (desktop)
 	const logoutBtn = LinkButton({
-		href: `${base}index.html`,
+		href: "#",
 		label: "Logout",
 		variant: "danger",
 		size: "sm",
@@ -88,7 +88,7 @@ export function Navbar() {
 
 	// Logout button (mobile)
 	const logoutBtnMobile = LinkButton({
-		href: `${base}index.html`,
+		href: "#",
 		label: "Logout",
 		variant: "danger",
 		size: "md",
@@ -150,7 +150,7 @@ export function Navbar() {
 	mobileStack.append(homeLink, randomLink);
 
 	// If logged in: show name + logout, else show login/signup
-	if (isLoggedIn) {
+	if (loggedIn) {
 		actions.append(loggedInText, logoutBtn);
 
 		const mobileLoggedInText = loggedInText.cloneNode(true);
