@@ -51,10 +51,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 		bodyEl.value = post.body || "";
 		mediaUrlEl.value = post.media?.url || "";
 		mediaAltEl.value = post.media?.alt || "";
-
-		// Autofill location if it exists
-		latEl.value = post.location?.lat ?? "";
-		lngEl.value = post.location?.lng ?? "";
 	} catch (err) {
 		showError(err.message);
 	}
@@ -70,17 +66,9 @@ form.addEventListener("submit", async (e) => {
 	const mediaUrl = mediaUrlEl.value.trim();
 	const mediaAlt = mediaAltEl.value.trim();
 
-	const lat = latEl.value ? Number(latEl.value) : null;
-	const lng = lngEl.value ? Number(lngEl.value) : null;
-
 	if (!title) return showError("Title is required.");
 	if (!body) return showError("Text is required.");
 	if (!mediaUrl) return showError("Image URL is required.");
-
-	// If one is filled, require both
-	if ((latEl.value && !lngEl.value) || (!latEl.value && lngEl.value)) {
-		return showError("Please fill both Latitude and Longitude.");
-	}
 
 	const payload = {
 		title,
@@ -89,11 +77,6 @@ form.addEventListener("submit", async (e) => {
 			url: mediaUrl,
 			alt: mediaAlt || title,
 		},
-		// Only include location if both values exist
-		...(lat !== null &&
-			lng !== null && {
-				location: { lat, lng },
-			}),
 	};
 
 	try {
