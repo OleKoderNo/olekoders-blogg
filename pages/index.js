@@ -4,6 +4,13 @@ import { Navbar } from "../assets/js/components/Navbar.js";
 // Import funtion that fetches all posts form API
 import { getAllPost } from "../assets/api/post.js";
 
+// For delete request + blog name
+import { request } from "../assets/api/request.js";
+import { BLOG_NAME } from "../assets/api/config.js";
+
+// Login check
+import { isLoggedIn } from "/assets/api/guard.js";
+
 // Landing page init
 window.addEventListener("DOMContentLoaded", async () => {
 	// Mount navbar
@@ -29,8 +36,18 @@ window.addEventListener("DOMContentLoaded", async () => {
 	setupFeaturedCarousel(featured);
 	renderPostsGrid(rest);
 
+	// Apply ow="" for everything injected
 	window.applyOleWind();
 });
+
+// Delete helper (only works if logged in)
+async function deletePostById(id) {
+	const ok = confirm("Are you sure you want to delete this post?");
+	if (!ok) return false;
+
+	await request(`/blog/posts/${BLOG_NAME}/${id}`, { method: "DELETE" });
+	return true;
+}
 
 // Featured carosel
 function setupFeaturedCarousel(posts) {
@@ -39,13 +56,24 @@ function setupFeaturedCarousel(posts) {
 	const prev = document.getElementById("featured-prev");
 	const next = document.getElementById("featured-next");
 
+	// Container for buttons under featured title
+	let actionsEl = document.getElementById("featured-actions");
+	if (!actionsEl) {
+		actionsEl = document.createElement("div");
+		actionsEl.id = "featured-actions";
+		actionsEl.className = "flex justify-center gap-4 my-4";
+
+		// Put it right under the title
+		titleEl.insertAdjacentElement("afterend", actionsEl);
+	}
+
 	let i = 0;
 
 	function render() {
 		const post = posts[i];
 
+		// Image area
 		stage.innerHTML = "";
-
 		const link = document.createElement("a");
 		link.href = `./post/index.html?id=${post.id}`;
 		link.className = "block";
@@ -59,7 +87,55 @@ function setupFeaturedCarousel(posts) {
 		link.append(img);
 		stage.append(link);
 
+		// Title
 		titleEl.textContent = post.title;
+
+		// Buttons under the featured title
+		actionsEl.innerHTML = "";
+
+		const readMore = document.createElement("a");
+		readMore.className = "bg-olive no-underline text-white rounded-md px-6 py-2";
+		readMore.href = `./post/index.html?id=${post.id}`;
+		readMore.textContent = "Read more";
+
+		actionsEl.append(readMore);
+
+		// Only show edit/delete when logged in
+		if (isLoggedIn()) {
+			const edit = document.createElement("a");
+			edit.className = "bg-dusty-blue no-underline text-white rounded-md px-6 py-2";
+			edit.href = `./edit-post/index.html?id=${post.id}`;
+			edit.textContent = "Edit post";
+
+			const del = document.createElement("button");
+			del.type = "button";
+			del.className = "bg-charcoal text-white rounded-md px-6 py-2 cursor-pointer border";
+			del.textContent = "Delete";
+
+			del.addEventListener("click", async () => {
+				try {
+					const deleted = await deletePostById(post.id);
+					if (!deleted) return;
+
+					// Remove from carousel list and re-render
+					posts.splice(i, 1);
+					if (posts.length === 0) {
+						stage.innerHTML = "";
+						titleEl.textContent = "";
+						actionsEl.innerHTML = "";
+						prev.classList.add("hidden");
+						next.classList.add("hidden");
+						return;
+					}
+					i = i % posts.length;
+					render();
+				} catch (err) {
+					alert(err.message);
+				}
+			});
+
+			actionsEl.append(edit, del);
+		}
 	}
 
 	prev.addEventListener("click", () => {
@@ -81,12 +157,12 @@ function renderPostsGrid(posts) {
 	root.innerHTML = "";
 
 	posts.forEach((post) => {
-		root.append(createPostCard(post));
+		root.append(createPostCard(post, posts));
 	});
 }
 
 // Single post card
-function createPostCard(post) {
+function createPostCard(post, allPosts) {
 	const article = document.createElement("article");
 	article.className = "border rounded-lg";
 	article.setAttribute("ow", "md:w-full md:max-w-sm");
@@ -104,16 +180,47 @@ function createPostCard(post) {
 	p.textContent = makeExcerpt(post.body, 90);
 
 	const btnWrap = document.createElement("div");
-	btnWrap.className = "flex justify-center my-6";
+	btnWrap.className = "flex justify-center gap-4 my-6";
 
-	const link = document.createElement("a");
-	link.className = "bg-olive no-underline text-white rounded-md px-6 py-2";
-	link.href = `./post/index.html?id=${post.id}`;
-	link.textContent = "Read more";
+	const read = document.createElement("a");
+	read.className = "bg-olive no-underline text-white rounded-md px-6 py-2";
+	read.href = `./post/index.html?id=${post.id}`;
+	read.textContent = "Read more";
 
-	btnWrap.append(link);
+	btnWrap.append(read);
+
+	// Only show edit/delete when logged in
+	if (isLoggedIn()) {
+		const edit = document.createElement("a");
+		edit.className = "bg-dusty-blue no-underline text-white rounded-md px-6 py-2";
+		edit.href = `./edit-post/index.html?id=${post.id}`;
+		edit.textContent = "Edit post";
+
+		const del = document.createElement("button");
+		del.type = "button";
+		del.className = "bg-charcoal text-white rounded-md px-6 py-2 cursor-pointer border";
+		del.textContent = "Delete";
+
+		del.addEventListener("click", async () => {
+			try {
+				const deleted = await deletePostById(post.id);
+				if (!deleted) return;
+
+				// Remove from grid list and re-render grid
+				const idx = allPosts.findIndex((p) => p.id === post.id);
+				if (idx !== -1) allPosts.splice(idx, 1);
+				renderPostsGrid(allPosts);
+
+				window.applyOleWind();
+			} catch (err) {
+				alert(err.message);
+			}
+		});
+
+		btnWrap.append(edit, del);
+	}
+
 	article.append(img, title, p, btnWrap);
-
 	return article;
 }
 
