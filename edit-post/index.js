@@ -1,7 +1,7 @@
-import { request } from "/assets/api/request.js";
-import { BLOG_NAME } from "/assets/api/config.js";
-import { requireAuth } from "/assets/api/guard.js";
-import { getById } from "/assets/api/post.js";
+import { request } from "../assets/api/request.js";
+import { BLOG_NAME } from "../assets/api/config.js";
+import { requireAuth } from "../assets/api/guard.js";
+import { getById } from "../assets/api/post.js";
 
 // Redirect if not logged in
 if (!requireAuth()) {

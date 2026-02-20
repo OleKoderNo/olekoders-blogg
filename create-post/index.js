@@ -1,6 +1,6 @@
-import { request } from "/assets/api/request.js";
-import { BLOG_NAME } from "/assets/api/config.js";
-import { requireAuth } from "/assets/api/guard.js";
+import { request } from "../assets/api/request.js";
+import { BLOG_NAME } from "../assets/api/config.js";
+import { requireAuth } from "../assets/api/guard.js";
 
 // Redirect immediately if user is not logged in
 if (!requireAuth()) {

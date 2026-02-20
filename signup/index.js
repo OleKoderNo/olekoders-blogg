@@ -1,5 +1,5 @@
-import { register, login, createApiKey } from "/assets/api/user.js";
-import { saveAuthSession } from "/assets/api/session.js";
+import { register, login, createApiKey } from "../assets/api/user.js";
+import { saveAuthSession } from "../assets/api/session.js";
 
 // validate if its student noroff email
 function isNoroffStudentEmail(email) {
