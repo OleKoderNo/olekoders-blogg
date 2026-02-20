@@ -100,6 +100,14 @@ body {
 	max-height: 30rem; /* 480px */
 }
 
+.max-h-180 {
+	max-height: 45rem; /* 720px */
+}
+
+.max-h-240 {
+	max-height: 60rem; /* 960px */
+}
+
 /* =========================
    Sizing
    ========================= */
