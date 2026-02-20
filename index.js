@@ -1,12 +1,12 @@
 // Import reusable site navbar component
-import { Navbar } from "../assets/js/components/Navbar.js";
+import { Navbar } from "./assets/js/components/Navbar.js";
 
 // Import funtion that fetches all posts form API
-import { getAllPost } from "../assets/api/post.js";
+import { getAllPost } from "./assets/api/post.js";
 
 // For delete request + blog name
-import { request } from "../assets/api/request.js";
-import { BLOG_NAME } from "../assets/api/config.js";
+import { request } from "./assets/api/request.js";
+import { BLOG_NAME } from "./assets/api/config.js";
 
 // Login check
 import { isLoggedIn } from "/assets/api/guard.js";

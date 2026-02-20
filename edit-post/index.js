@@ -86,7 +86,7 @@ form.addEventListener("submit", async (e) => {
 		});
 
 		const updated = res.data;
-		window.location.href = `/pages/post/index.html?id=${updated.id}`;
+		window.location.href = `/post/index.html?id=${updated.id}`;
 	} catch (err) {
 		showError(err.message);
 	}

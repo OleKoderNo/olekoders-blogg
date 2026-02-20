@@ -56,7 +56,7 @@ form.addEventListener("submit", async (e) => {
 		});
 
 		const created = res.data;
-		window.location.href = `/pages/post/index.html?id=${created.id}`;
+		window.location.href = `/post/index.html?id=${created.id}`;
 	} catch (err) {
 		showError(err.message);
 	}
