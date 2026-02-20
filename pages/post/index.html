@@ -4,7 +4,6 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>OleKoder's Blogg</title>
-
 		<link rel="stylesheet" href="../../assets/css/olewind.css" />
 		<script defer src="../../assets/js/olewind.js"></script>
 		<script type="module" defer src="./index.js"></script>
@@ -24,6 +23,19 @@
 							class="w-full object-cover object-center"
 							ow="max-h-72"
 						/>
+					</div>
+					<div id="map-wrap" class="my-6 hidden">
+						<h2 class="text-2xl mb-2">Location</h2>
+						<div class="w-full rounded-md overflow-hidden border">
+							<iframe
+								id="post-map"
+								title="Post location map"
+								class="w-full"
+								style="height: 320px; border: 0"
+								loading="lazy"
+								referrerpolicy="no-referrer-when-downgrade"
+							></iframe>
+						</div>
 					</div>
 					<p id="post-body" class="my-4"></p>
 					<p id="post-author" class="text-small font-medium"></p>
