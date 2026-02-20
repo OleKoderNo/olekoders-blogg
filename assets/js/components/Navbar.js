@@ -78,6 +78,23 @@ export function Navbar() {
 	loggedInText.className = "text-small font-medium text-charcoal";
 	loggedInText.textContent = `Logged into: ${profileName}`;
 
+	// Create post button (desktop) - only used when logged in
+	const createPostBtn = LinkButton({
+		href: `${base}create-post/index.html`,
+		label: "Create post",
+		variant: "primary", // olive
+		size: "sm",
+	});
+
+	// Create post button (mobile) - only used when logged in
+	const createPostBtnMobile = LinkButton({
+		href: `${base}create-post/index.html`,
+		label: "Create post",
+		variant: "primary", // olive
+		size: "md",
+		extra: "px-5 py-3 max-w-sm",
+	});
+
 	// Logout button (desktop)
 	const logoutBtn = LinkButton({
 		href: "#",
@@ -149,12 +166,14 @@ export function Navbar() {
 	mobileStack.className = "flex flex-col gap-4 items-center";
 	mobileStack.append(homeLink, randomLink);
 
-	// If logged in: show name + logout, else show login/signup
+	// If logged in: show name + create post + logout, else show login/signup
 	if (loggedIn) {
-		actions.append(loggedInText, logoutBtn);
+		// Desktop: ... Logged into: X | Create post | Logout
+		actions.append(loggedInText, createPostBtn, logoutBtn);
 
+		// Mobile: stacked
 		const mobileLoggedInText = loggedInText.cloneNode(true);
-		mobileStack.append(mobileLoggedInText, logoutBtnMobile);
+		mobileStack.append(mobileLoggedInText, createPostBtnMobile, logoutBtnMobile);
 	} else {
 		actions.append(loginBtn, signupBtn);
 		mobileStack.append(loginBtnMobile, signupBtnMobile);
