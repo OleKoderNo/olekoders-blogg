@@ -8,7 +8,6 @@
 		<script defer src="/assets/js/olewind.js"></script>
 		<script type="module" defer src="./index.js"></script>
 	</head>
-
 	<body class="min-h-screen flex items-center justify-center bg-cloud px-4">
 		<div class="w-full max-w-sm bg-white p-8 rounded-lg border">
 			<h1 class="text-4xl font-bold text-charcoal text-center mb-6">Edit post</h1>
@@ -28,13 +27,39 @@
 				</div>
 				<div class="flex flex-col">
 					<label class="text-base font-medium text-charcoal mb-2" for="mediaUrl">Image URL</label>
-					<input id="mediaUrl" type="url" required class="max-w-sm px-4 py-2 border rounded-md" />
+					<input
+						id="mediaUrl"
+						type="url"
+						required
+						maxlength="300"
+						class="max-w-sm px-4 py-2 border rounded-md"
+					/>
 				</div>
 				<div class="flex flex-col">
-					<label class="text-base font-medium text-charcoal mb-2" for="mediaAlt"
-						>Image description</label
-					>
+					<label class="text-base font-medium text-charcoal mb-2" for="mediaAlt">
+						Image description
+					</label>
 					<input id="mediaAlt" type="text" class="max-w-sm px-4 py-2 border rounded-md" />
+				</div>
+				<div class="flex flex-col">
+					<label class="text-base font-medium text-charcoal mb-2" for="latitude">Latitude</label>
+					<input
+						id="latitude"
+						type="number"
+						step="any"
+						class="max-w-sm px-4 py-2 border rounded-md"
+						placeholder="e.g. 59.9139"
+					/>
+				</div>
+				<div class="flex flex-col">
+					<label class="text-base font-medium text-charcoal mb-2" for="longitude">Longitude</label>
+					<input
+						id="longitude"
+						type="number"
+						step="any"
+						class="max-w-sm px-4 py-2 border rounded-md"
+						placeholder="e.g. 10.7522"
+					/>
 				</div>
 				<p id="form-error" class="text-small text-charcoal hidden"></p>
 				<button
@@ -43,6 +68,7 @@
 				>
 					Save changes
 				</button>
+
 				<button
 					id="delete-btn"
 					type="button"
