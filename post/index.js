@@ -1,5 +1,5 @@
-import { Navbar } from "../../assets/js/components/Navbar.js";
-import { getById } from "../../assets/api/post.js";
+import { Navbar } from "../assets/js/components/Navbar.js";
+import { getById } from "../assets/api/post.js";
 
 function getPostIdFromUrl() {
 	return new URLSearchParams(window.location.search).get("id");
