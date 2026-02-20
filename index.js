@@ -9,7 +9,7 @@ import { request } from "./assets/api/request.js";
 import { BLOG_NAME } from "./assets/api/config.js";
 
 // Login check
-import { isLoggedIn } from "/assets/api/guard.js";
+import { isLoggedIn } from "./assets/api/guard.js";
 
 // Landing page init
 window.addEventListener("DOMContentLoaded", async () => {
