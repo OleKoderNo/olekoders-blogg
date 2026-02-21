@@ -1,5 +1,6 @@
 // Import reusable site navbar component
 import { Navbar } from "./assets/js/components/Navbar.js";
+import { Footer } from "./assets/js/components/Footer.js";
 
 // Import funtion that fetches all posts form API
 import { getAllPost } from "./assets/api/post.js";
@@ -15,6 +16,9 @@ import { isLoggedIn } from "./assets/api/guard.js";
 window.addEventListener("DOMContentLoaded", async () => {
 	// Mount navbar
 	document.getElementById("site-nav").append(Navbar());
+
+	//Mount footer
+	document.getElementById("site-footer").append(Footer());
 
 	// Run OleWind again so hover effects works in navbar
 	window.applyOleWind();

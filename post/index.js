@@ -1,4 +1,5 @@
 import { Navbar } from "../assets/js/components/Navbar.js";
+import { Footer } from "../assets/js/components/Footer.js";
 import { getById } from "../assets/api/post.js";
 
 function getPostIdFromUrl() {
@@ -8,6 +9,8 @@ function getPostIdFromUrl() {
 window.addEventListener("DOMContentLoaded", async () => {
 	// Navbar
 	document.getElementById("site-nav").append(Navbar());
+	//Footer
+	document.getElementById("site-footer").append(Footer());
 	window.applyOleWind?.();
 
 	// Fetch post
