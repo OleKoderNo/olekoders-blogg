@@ -28,9 +28,7 @@ export function handle404() {
 	if (!slug) return;
 
 	// Redirect to real post page
-	const redirectUrl = `${base}post/index.html?slug=${encodeURIComponent(slug)}`;
-
-	window.location.replace(redirectUrl);
+	window.location.replace(`${base}post/index.html?slug=${encodeURIComponent(slug)}`);
 }
 
 // Explicit call (no run-once style)
