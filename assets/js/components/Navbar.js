@@ -1,5 +1,6 @@
 import { LinkButton } from "./Button.js";
 import { isLoggedIn } from "../../api/guard.js";
+import { getAllPost } from "../../api/post.js";
 
 function getRepoBase() {
 	const host = window.location.hostname;
@@ -130,10 +131,49 @@ export function Navbar() {
 		window.location.href = base;
 	}
 
+	async function goToRandomPost(e) {
+		e.preventDefault();
+
+		const el = e.currentTarget;
+		const originalText = el.textContent;
+
+		el.textContent = "Loading...";
+		el.style.pointerEvents = "none";
+
+		try {
+			const res = await getAllPost();
+			const posts = res?.data ?? [];
+
+			if (!Array.isArray(posts) || posts.length === 0) {
+				throw new Error("No posts found");
+			}
+
+			const random = posts[Math.floor(Math.random() * posts.length)];
+			const id = random?.id;
+
+			if (!id) throw new Error("Post missing id");
+
+			window.location.href = `${base}post/?id=${encodeURIComponent(id)}`;
+		} catch (err) {
+			console.error(err);
+			alert("Could not load a random post. Try again.");
+			el.textContent = originalText;
+			el.style.pointerEvents = "";
+		}
+	}
+
+	randomLink.addEventListener("click", goToRandomPost);
+
 	logoutBtn.addEventListener("click", doLogout);
 	logoutBtnMobile.addEventListener("click", doLogout);
 
-	actions.append(homeLink.cloneNode(true), randomLink.cloneNode(true));
+	const homeLinkDesktop = homeLink.cloneNode(true);
+
+	const randomLinkDesktop = randomLink.cloneNode(true);
+	randomLinkDesktop.href = "#";
+	randomLinkDesktop.addEventListener("click", goToRandomPost);
+
+	actions.append(homeLinkDesktop, randomLinkDesktop);
 
 	const mobileStack = document.createElement("div");
 	mobileStack.className = "flex flex-col gap-4 items-center";
