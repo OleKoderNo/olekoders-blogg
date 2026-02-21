@@ -18,7 +18,7 @@ export function Navbar() {
 	const profileName = localStorage.getItem("profileName") || "User";
 
 	const nav = document.createElement("header");
-	nav.className = "w-full border-b";
+	nav.className = "w-full border-b bg-off-white";
 
 	const inner = document.createElement("div");
 	inner.className = "max-w-page mx-auto px-4 py-4 flex justify-between items-center";
