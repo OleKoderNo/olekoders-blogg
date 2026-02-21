@@ -117,6 +117,10 @@ body {
 }
 
 /* Max width */
+.max-w-card {
+	max-width: 18rem; /* 288px */
+}
+
 .max-w-xs {
 	max-width: 20rem; /* 320px */
 }
@@ -129,16 +133,12 @@ body {
 	max-width: 28rem; /* 448px */
 }
 
-.max-w-card {
-	max-width: 18rem;
-}
-
 .max-w-hero {
-	max-width: 40rem;
+	max-width: 40rem; /* 640px */
 }
 
 .max-w-page {
-	max-width: 80rem;
+	max-width: 80rem; /* 1280px */
 }
 
 /* =========================
