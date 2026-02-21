@@ -4,17 +4,13 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Login</title>
-
 		<link rel="stylesheet" href="../assets/css/olewind.css" />
 		<script defer src="../assets/js/olewind.js"></script>
-
 		<script type="module" defer src="./index.js"></script>
 	</head>
-
 	<body class="min-h-screen flex items-center justify-center bg-cloud px-4">
-		<div class="w-full max-w-sm bg-white p-8 rounded-lg border">
+		<main class="w-full max-w-sm bg-white p-8 rounded-lg border">
 			<h1 class="text-4xl font-bold text-charcoal text-center mb-6">Sign in</h1>
-
 			<form id="login-form" class="flex flex-col gap-4">
 				<div class="flex flex-col">
 					<label class="text-base font-medium text-charcoal mb-2" for="email">Email</label>
@@ -26,7 +22,6 @@
 						placeholder="you@stud.noroff.no"
 					/>
 				</div>
-
 				<div class="flex flex-col">
 					<label class="text-base font-medium text-charcoal mb-2" for="password">Password</label>
 					<input
@@ -37,7 +32,6 @@
 						placeholder="•••••••••••••••"
 					/>
 				</div>
-
 				<button
 					type="submit"
 					class="mt-4 inline-flex items-center justify-center font-bold cursor-pointer border border-charcoal rounded-md text-center no-underline bg-olive text-white px-6 py-4 text-base"
@@ -45,11 +39,10 @@
 					Sign in
 				</button>
 			</form>
-
 			<p class="text-base text-charcoal text-center mt-6">
 				Don't have an account?
 				<a class="text-dusty-blue font-bold" href="#">Sign up</a>
 			</p>
-		</div>
+		</main>
 	</body>
 </html>
