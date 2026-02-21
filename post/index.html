@@ -8,26 +8,28 @@
 		<script defer src="../assets/js/olewind.js"></script>
 		<script type="module" defer src="./index.js"></script>
 	</head>
-	<body class="text-charcoal">
+	<body class="text-charcoal bg-cloud">
 		<div id="site-nav"></div>
-		<main class="w-full max-w-page mx-auto">
-			<header class="my-6 text-center">
-				<h1 id="post-title" class="text-3xl"></h1>
-			</header>
-			<section class="my-8 px-4">
-				<div class="p-4 mx-auto max-w-md" ow="md:max-w-hero">
-					<div class="w-full rounded-md overflow-hidden">
-						<img
-							id="post-image"
-							alt="Featured post"
-							class="w-full object-cover object-center max-h-72"
-							ow="md:max-h-180 lg:max-h-240"
-						/>
+		<main class="w-full max-w-hero mx-auto">
+			<div class="bg-white border rounded-lg my-4 px-4">
+				<header class="pt-4 text-center">
+					<h1 id="post-title" class="text-3xl"></h1>
+				</header>
+				<section class="my-4 pb-4">
+					<div class="p-4 bg-white mx-auto max-w-md" ow="md:max-w-hero">
+						<div class="w-full rounded-md overflow-hidden">
+							<img
+								id="post-image"
+								alt="Featured post"
+								class="w-full object-cover object-center max-h-72"
+								ow="md:max-h-180 lg:max-h-240"
+							/>
+						</div>
+						<p id="post-body" class="my-4"></p>
+						<p id="post-author" class="text-small font-medium"></p>
 					</div>
-					<p id="post-body" class="my-4"></p>
-					<p id="post-author" class="text-small font-medium"></p>
-				</div>
-			</section>
+				</section>
+			</div>
 		</main>
 		<div id="site-footer"></div>
 	</body>
