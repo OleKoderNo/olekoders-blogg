@@ -1,15 +1,7 @@
 import { LinkButton } from "./Button.js";
 import { isLoggedIn } from "../../api/guard.js";
 import { getAllPost } from "../../api/post.js";
-
-function getRepoBase() {
-	const host = window.location.hostname;
-	if (host === "127.0.0.1" || host === "localhost") return "/";
-
-	const parts = window.location.pathname.split("/").filter(Boolean);
-	const repo = parts[0] || "";
-	return `/${repo}/`;
-}
+import { getRepoBase } from "../utils/repoBase.js";
 
 export function Navbar() {
 	const base = getRepoBase();
@@ -25,7 +17,6 @@ export function Navbar() {
 
 	const brand = document.createElement("a");
 	brand.href = base;
-
 	brand.className = "text-large font-bold text-charcoal no-underline";
 	brand.setAttribute("ow", "hover:underline");
 	brand.textContent = "OleKoder's Blogg";
@@ -42,9 +33,7 @@ export function Navbar() {
 	actions.setAttribute("ow", "hidden md:flex");
 
 	const mobileMenu = document.createElement("div");
-	mobileMenu.className = "px-4 pb-4";
-	mobileMenu.classList.add("hidden");
-	mobileMenu.setAttribute("ow", "md:hidden");
+	mobileMenu.className = "px-4 pb-4 hidden md-hidden";
 
 	const homeLink = document.createElement("a");
 	homeLink.href = base;
@@ -53,7 +42,7 @@ export function Navbar() {
 	homeLink.setAttribute("ow", "hover:underline");
 
 	const randomLink = document.createElement("a");
-	randomLink.href = base;
+	randomLink.href = "#";
 	randomLink.textContent = "Random post";
 	randomLink.className = "text-charcoal no-underline";
 	randomLink.setAttribute("ow", "hover:underline");
@@ -122,6 +111,8 @@ export function Navbar() {
 		extra: "px-5 py-3 max-w-sm",
 	});
 
+	let open = false;
+
 	function doLogout(e) {
 		e.preventDefault();
 		localStorage.removeItem("accessToken");
@@ -163,7 +154,6 @@ export function Navbar() {
 	}
 
 	randomLink.addEventListener("click", goToRandomPost);
-
 	logoutBtn.addEventListener("click", doLogout);
 	logoutBtnMobile.addEventListener("click", doLogout);
 
@@ -190,7 +180,6 @@ export function Navbar() {
 
 	mobileMenu.append(mobileStack);
 
-	let open = false;
 	menuBtn.addEventListener("click", () => {
 		open = !open;
 		mobileMenu.classList.toggle("hidden", !open);
