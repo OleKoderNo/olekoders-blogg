@@ -7,11 +7,9 @@ export function handle404() {
 
 	// Mount navbar
 	document.getElementById("site-nav")?.append(Navbar());
-
 	// Mount footer
 	document.getElementById("site-footer")?.append(Footer());
 
-	// Fix home link path
 	const homeLink = document.getElementById("home-link");
 	if (homeLink) homeLink.href = base;
 
@@ -30,7 +28,10 @@ export function handle404() {
 	if (!slug) return;
 
 	// Redirect to real post page
-	window.location.replace(`${base}post/index.html?slug=${encodeURIComponent(slug)}`);
+	const redirectUrl = `${base}post/index.html?slug=${encodeURIComponent(slug)}`;
+
+	window.location.replace(redirectUrl);
 }
 
+// Explicit call (no run-once style)
 handle404();
