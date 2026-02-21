@@ -1,11 +1,15 @@
 import { request } from "../assets/api/request.js";
 import { BLOG_NAME } from "../assets/api/config.js";
 import { requireAuth } from "../assets/api/guard.js";
+import { getRepoBase } from "../assets/js/utils/repoBase.js";
 
 // Redirect immediately if user is not logged in
 if (!requireAuth()) {
 	throw new Error("User not authenticated");
 }
+
+// Get base path
+const base = getRepoBase();
 
 // DOM references
 const form = document.getElementById("create-post-form");
@@ -56,7 +60,7 @@ form.addEventListener("submit", async (e) => {
 		});
 
 		const created = res.data;
-		window.location.href = `/post/index.html?id=${created.id}`;
+		window.location.href = `${base}post/index.html?id=${encodeURIComponent(created.id)}`;
 	} catch (err) {
 		showError(err.message);
 	}

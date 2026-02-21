@@ -2,11 +2,15 @@ import { request } from "../assets/api/request.js";
 import { BLOG_NAME } from "../assets/api/config.js";
 import { requireAuth } from "../assets/api/guard.js";
 import { getById } from "../assets/api/post.js";
+import { getRepoBase } from "../assets/js/utils/repoBase.js";
 
 // Redirect if not logged in
 if (!requireAuth()) {
 	throw new Error("User not authenticated");
 }
+
+// Base path
+const base = getRepoBase();
 
 // Get id from URL
 function getIdFromUrl() {
@@ -19,8 +23,6 @@ const titleEl = document.getElementById("title");
 const bodyEl = document.getElementById("body");
 const mediaUrlEl = document.getElementById("mediaUrl");
 const mediaAltEl = document.getElementById("mediaAlt");
-const latEl = document.getElementById("latitude");
-const lngEl = document.getElementById("longitude");
 const errorEl = document.getElementById("form-error");
 const deleteBtn = document.getElementById("delete-btn");
 
@@ -86,7 +88,9 @@ form.addEventListener("submit", async (e) => {
 		});
 
 		const updated = res.data;
-		window.location.href = `/post/index.html?id=${updated.id}`;
+
+		// Redirect using basepath
+		window.location.assign(`${base}post/index.html?id=${encodeURIComponent(updated.id)}`);
 	} catch (err) {
 		showError(err.message);
 	}
@@ -101,7 +105,9 @@ deleteBtn.addEventListener("click", async () => {
 
 	try {
 		await request(`/blog/posts/${BLOG_NAME}/${id}`, { method: "DELETE" });
-		window.location.href = "/index.html";
+
+		//Redirect using basepath
+		window.location.assign(`${base}index.html`);
 	} catch (err) {
 		showError(err.message);
 	}

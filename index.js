@@ -2,6 +2,9 @@
 import { Navbar } from "./assets/js/components/Navbar.js";
 import { Footer } from "./assets/js/components/Footer.js";
 
+// Base path helper
+import { getRepoBase } from "./assets/js/utils/repoBase.js";
+
 // Import funtion that fetches all posts form API
 import { getAllPost } from "./assets/api/post.js";
 
@@ -12,12 +15,14 @@ import { BLOG_NAME } from "./assets/api/config.js";
 // Login check
 import { isLoggedIn } from "./assets/api/guard.js";
 
+const base = getRepoBase();
+
 // Landing page init
 window.addEventListener("DOMContentLoaded", async () => {
 	// Mount navbar
 	document.getElementById("site-nav").append(Navbar());
 
-	//Mount footer
+	// Mount footer
 	document.getElementById("site-footer").append(Footer());
 
 	// Run OleWind again so hover effects works in navbar
@@ -53,7 +58,7 @@ async function deletePostById(id) {
 	return true;
 }
 
-// Featured carosel
+// Featured carousel
 function setupFeaturedCarousel(posts) {
 	const stage = document.getElementById("featured-carousel");
 	const titleEl = document.getElementById("featured-title");
@@ -79,7 +84,7 @@ function setupFeaturedCarousel(posts) {
 		// Image area
 		stage.innerHTML = "";
 		const link = document.createElement("a");
-		link.href = `./post/index.html?id=${post.id}`;
+		link.href = `${base}post/index.html?id=${encodeURIComponent(post.id)}`;
 		link.className = "block";
 
 		const img = document.createElement("img");
@@ -99,7 +104,7 @@ function setupFeaturedCarousel(posts) {
 
 		const readMore = document.createElement("a");
 		readMore.className = "bg-olive no-underline text-white rounded-md px-6 py-2";
-		readMore.href = `./post/index.html?id=${post.id}`;
+		readMore.href = `${base}post/index.html?id=${encodeURIComponent(post.id)}`;
 		readMore.textContent = "Read more";
 
 		actionsEl.append(readMore);
@@ -108,7 +113,7 @@ function setupFeaturedCarousel(posts) {
 		if (isLoggedIn()) {
 			const edit = document.createElement("a");
 			edit.className = "bg-dusty-blue no-underline text-white rounded-md px-6 py-2";
-			edit.href = `./edit-post/index.html?id=${post.id}`;
+			edit.href = `${base}edit-post/index.html?id=${encodeURIComponent(post.id)}`;
 			edit.textContent = "Edit post";
 
 			const del = document.createElement("button");
@@ -188,7 +193,7 @@ function createPostCard(post, allPosts) {
 
 	const read = document.createElement("a");
 	read.className = "bg-olive no-underline text-white rounded-md px-6 py-2";
-	read.href = `./post/index.html?id=${post.id}`;
+	read.href = `${base}post/index.html?id=${encodeURIComponent(post.id)}`;
 	read.textContent = "Read more";
 
 	btnWrap.append(read);
@@ -197,7 +202,7 @@ function createPostCard(post, allPosts) {
 	if (isLoggedIn()) {
 		const edit = document.createElement("a");
 		edit.className = "bg-dusty-blue no-underline text-white rounded-md px-6 py-2";
-		edit.href = `./edit-post/index.html?id=${post.id}`;
+		edit.href = `${base}edit-post/index.html?id=${encodeURIComponent(post.id)}`;
 		edit.textContent = "Edit post";
 
 		const del = document.createElement("button");

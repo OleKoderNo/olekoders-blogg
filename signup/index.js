@@ -1,5 +1,6 @@
 import { register, login, createApiKey } from "../assets/api/user.js";
 import { saveAuthSession } from "../assets/api/session.js";
+import { getRepoBase } from "../assets/js/utils/repoBase.js";
 
 // validate if its student noroff email
 function isNoroffStudentEmail(email) {
@@ -7,6 +8,8 @@ function isNoroffStudentEmail(email) {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+	const base = getRepoBase();
+
 	const form = document.getElementById("signup-form");
 	const nameEl = document.getElementById("name");
 	const emailEl = document.getElementById("email");
@@ -58,7 +61,7 @@ window.addEventListener("DOMContentLoaded", () => {
 			saveAuthSession({ accessToken }, apiKey);
 
 			// Redirect to landing page
-			window.location.href = "/index.html";
+			window.location.href = `${base}index.html`;
 		} catch (err) {
 			alert(err.message);
 		}
