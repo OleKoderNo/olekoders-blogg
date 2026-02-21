@@ -645,3 +645,9 @@ body {
 .cursor-pointer {
 	cursor: pointer;
 }
+
+@media (min-width: 768px) {
+	.md-hidden {
+		display: none;
+	}
+}
