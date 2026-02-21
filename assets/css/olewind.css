@@ -88,6 +88,10 @@ body {
 	height: 100%;
 }
 
+.h-10 {
+	height: 2.5rem;
+}
+
 .max-h-72 {
 	max-height: 18rem; /* 288px */
 }
@@ -114,6 +118,10 @@ body {
 /* Width */
 .w-full {
 	width: 100%;
+}
+
+.w-10 {
+	width: 2.5rem;
 }
 
 /* Max width */
