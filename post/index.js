@@ -1,15 +1,12 @@
 import { Navbar } from "../assets/js/components/Navbar.js";
 import { Footer } from "../assets/js/components/Footer.js";
 import { getById } from "../assets/api/post.js";
-import { getRepoBase } from "../assets/js/utils/repoBase.js";
 
 function getPostIdFromUrl() {
 	return new URLSearchParams(window.location.search).get("id");
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
-	const base = getRepoBase();
-
 	// Navbar
 	document.getElementById("site-nav").append(Navbar());
 	//Footer
@@ -18,8 +15,19 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 	// Fetch post
 	const id = getPostIdFromUrl();
-	if (!id) {
-		// Goes back to landingpage
-		window.location.assign(`${base}index.html`);
-	}
+	const res = await getById(id);
+	const post = res.data;
+
+	// Render content
+	document.getElementById("post-title").textContent = post.title;
+	const img = document.getElementById("post-image");
+
+	img.src = post.media.url;
+	img.alt = post.media.alt || post.title;
+
+	document.getElementById("post-body").textContent = post.body;
+	document.getElementById("post-author").textContent =
+		`Author: ${post.author?.name || post.author}`;
+
+	window.applyOleWind?.();
 });
