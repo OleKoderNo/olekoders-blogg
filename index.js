@@ -80,7 +80,7 @@ function createPostCard(post, allPosts) {
 	img.decoding = "async";
 
 	const title = document.createElement("h3");
-	title.className = "text-large font-medium my-4";
+	title.className = "text-large font-medium my-4 font-playpen";
 	title.textContent = post.title || "Untitled";
 
 	const p = document.createElement("p");
