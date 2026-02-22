@@ -1,6 +1,6 @@
-import { login, createApiKey } from "../assets/api/user.js";
-import { saveAuthSession } from "../assets/api/session.js";
-import { getRepoBase } from "../assets/js/utils/repoBase.js";
+import { login, createApiKey } from "../../assets/api/user.js";
+import { saveAuthSession } from "../../assets/api/session.js";
+import { getRepoBase } from "../../assets/js/utils/repoBase.js";
 
 function isNoroffStudentEmail(email) {
 	return String(email).trim().toLowerCase().endsWith("@stud.noroff.no");

@@ -5,91 +5,53 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta
 			name="description"
-			content="Create an account on OleKoder’s Blogg to start writing, editing, and publishing blog posts."
+			content="Log in to OleKoder’s Blogg to manage posts, edit content, and share new stories."
 		/>
-		<title>Sign up</title>
+		<title>Login</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Playpen+Sans:wght@100..800&display=swap"
 			rel="stylesheet"
 		/>
-		<link rel="stylesheet" href="../assets/css/olewind.css" />
-		<script defer src="../assets/js/olewind.js"></script>
-
+		<link rel="stylesheet" href="../../assets/css/olewind.css" />
+		<script defer src="../../assets/js/olewind.js"></script>
 		<script type="module" defer src="./index.js"></script>
 	</head>
-
 	<body class="min-h-screen flex items-center justify-center bg-cloud px-4">
 		<main class="w-full max-w-sm bg-white p-8 rounded-lg border">
-			<h1 class="text-4xl font-bold text-charcoal text-center mb-6">Sign up</h1>
-			<form id="signup-form" class="flex flex-col gap-4">
-				<div class="flex flex-col">
-					<label class="text-base font-medium text-charcoal mb-2" for="name">Name</label>
-					<input
-						id="name"
-						type="text"
-						class="max-w-sm px-4 py-2 border rounded-md"
-						placeholder="Your name"
-						autocomplete="name"
-						required
-					/>
-				</div>
+			<h1 class="text-4xl font-bold text-charcoal text-center mb-6">Sign in</h1>
+			<form id="login-form" class="flex flex-col gap-4">
 				<div class="flex flex-col">
 					<label class="text-base font-medium text-charcoal mb-2" for="email">Email</label>
 					<input
 						id="email"
 						type="email"
+						required
 						class="max-w-sm px-4 py-2 border rounded-md"
 						placeholder="you@stud.noroff.no"
-						autocomplete="email"
-						required
 					/>
-					<p class="text-small text-charcoal mt-2">
-						Email must end with <strong>@stud.noroff.no</strong>
-					</p>
 				</div>
-
 				<div class="flex flex-col">
 					<label class="text-base font-medium text-charcoal mb-2" for="password">Password</label>
 					<input
 						id="password"
 						type="password"
+						required
 						class="max-w-sm px-4 py-2 border rounded-md"
 						placeholder="•••••••••••••••"
-						autocomplete="new-password"
-						required
 					/>
 				</div>
-
-				<div class="flex flex-col">
-					<label class="text-base font-medium text-charcoal mb-2" for="password2"
-						>Repeat password</label
-					>
-					<input
-						id="password2"
-						type="password"
-						class="max-w-sm px-4 py-2 border rounded-md"
-						placeholder="•••••••••••••••"
-						autocomplete="new-password"
-						required
-					/>
-				</div>
-
-				<p id="form-error" class="text-small hidden"></p>
-
 				<button
-					id="signup-btn"
 					type="submit"
 					class="mt-4 inline-flex items-center justify-center font-bold cursor-pointer border border-charcoal rounded-md text-center no-underline bg-olive text-white px-6 py-4 text-base"
 				>
-					Create account
+					Sign in
 				</button>
 			</form>
-
 			<p class="text-base text-charcoal text-center mt-6">
-				Already have an account?
-				<a class="text-dusty-blue font-bold" href="../login/index.html">Sign in</a>
+				Don't have an account?
+				<a class="text-dusty-blue font-bold" href="../signup/index.html">Sign up</a>
 			</p>
 		</main>
 	</body>
