@@ -6,34 +6,33 @@ import { request } from "./assets/api/request.js";
 import { BLOG_NAME } from "./assets/api/config.js";
 import { isLoggedIn } from "./assets/api/guard.js";
 import { FeaturedCarousel } from "./assets/js/components/FeaturedCarousel.js";
+import { sortNewestFirst, splitFeatured } from "./assets/js/utils/posts.js";
+import { makeExcerpt } from "./assets/js/utils/text.js";
 
 const base = getRepoBase();
 // Landing page init
 
 window.addEventListener("DOMContentLoaded", async () => {
 	// Mount navbar
-
 	document.getElementById("site-nav").append(Navbar());
+
 	// Mount footer
-
 	document.getElementById("site-footer").append(Footer());
-	// Run OleWind again so hover effects works in navbar
 
+	// Run OleWind again so hover effects works in navbar
 	window.applyOleWind();
 
+	// Fetch all posts for landing page
 	const res = await getAllPost();
 	const posts = res.data;
+
 	// Sort newest first
+	const newestFirst = sortNewestFirst(posts);
 
-	const newestFirst = [...posts].sort((a, b) => new Date(b.created) - new Date(a.created));
-	// Feature first 3 posts
+	// Featured posts are taken from the newest-first list
+	const { featured, rest } = splitFeatured(newestFirst, 3);
 
-	const featured = newestFirst.slice(0, 3);
-	const featuredIds = new Set(featured.map((p) => p.id));
-	// Remaining posts
-
-	const rest = newestFirst.filter((p) => !featuredIds.has(p.id));
-
+	// Initialize featured carousel
 	FeaturedCarousel({
 		posts: featured,
 		base,
@@ -41,13 +40,14 @@ window.addEventListener("DOMContentLoaded", async () => {
 		onDelete: deletePostById,
 	});
 
+	// Render remaining posts
 	renderPostsGrid(rest);
-	// Apply ow="" for everything injected
 
+	// Apply ow="" for everything injected
 	window.applyOleWind();
 });
-// Delete helper (only works if logged in)
 
+// Delete helper (only works if logged in)
 async function deletePostById(id) {
 	const ok = confirm("Are you sure you want to delete this post?");
 	if (!ok) return false;
@@ -84,6 +84,8 @@ function createPostCard(post, allPosts) {
 	title.textContent = post.title || "Untitled";
 
 	const p = document.createElement("p");
+
+	// Excerpt logic is extracted to a util to keep markup readable
 	p.textContent = makeExcerpt(post.body, 90);
 
 	const btnWrap = document.createElement("div");
@@ -112,11 +114,12 @@ function createPostCard(post, allPosts) {
 			try {
 				const deleted = await deletePostById(post.id);
 				if (!deleted) return;
+
 				// Remove from grid list and re-render grid
 				const idx = allPosts.findIndex((p) => p.id === post.id);
 				if (idx !== -1) allPosts.splice(idx, 1);
-				renderPostsGrid(allPosts);
 
+				renderPostsGrid(allPosts);
 				window.applyOleWind();
 			} catch (err) {
 				alert(err.message);
@@ -128,11 +131,4 @@ function createPostCard(post, allPosts) {
 
 	article.append(img, title, p, btnWrap);
 	return article;
-}
-
-// Shorten text
-function makeExcerpt(text = "", max = 90) {
-	const s = String(text).trim();
-	if (s.length <= max) return s;
-	return s.slice(0, max).trim() + "...";
 }
