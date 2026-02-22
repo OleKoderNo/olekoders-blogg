@@ -82,21 +82,21 @@ export function Navbar() {
 	});
 
 	const loginBtn = LinkButton({
-		href: `${base}login/`,
+		href: `${base}account/login/`,
 		label: "Login",
 		variant: "primary",
 		size: "sm",
 	});
 
 	const signupBtn = LinkButton({
-		href: `${base}signup/`,
+		href: `${base}account/signup/`,
 		label: "Sign up",
 		variant: "secondary",
 		size: "sm",
 	});
 
 	const loginBtnMobile = LinkButton({
-		href: `${base}login/`,
+		href: `${base}account/login/`,
 		label: "Login",
 		variant: "primary",
 		size: "md",
@@ -104,7 +104,7 @@ export function Navbar() {
 	});
 
 	const signupBtnMobile = LinkButton({
-		href: `${base}signup/`,
+		href: `${base}account/signup/`,
 		label: "Sign up",
 		variant: "secondary",
 		size: "md",
