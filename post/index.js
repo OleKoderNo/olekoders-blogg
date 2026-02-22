@@ -2,6 +2,7 @@ import { Navbar } from "../assets/js/components/Navbar.js";
 import { Footer } from "../assets/js/components/Footer.js";
 import { getById, getAllPost } from "../assets/api/post.js";
 import { getRepoBase } from "../assets/js/utils/repoBase.js";
+import { ShareButton } from "../assets/js/components/ShareButton.js";
 
 // Base path
 const base = getRepoBase();
@@ -91,12 +92,20 @@ window.addEventListener("DOMContentLoaded", async () => {
 	img.src = post.media.url;
 	img.alt = post.media.alt || post.title;
 
-	// Post body andd  author
+	// Post body and author
 	document.getElementById("post-body").textContent = post.body;
 	document.getElementById("post-author").textContent =
 		`Author: ${post.author?.name || post.author}`;
 
+	// Update URL to /post/<slug>
 	setPrettyPath(post.title);
+
+	// Mount share button
+	const shareButton = document.getElementById("share-root");
+	if (shareButton) {
+		shareButton.innerHTML = "";
+		shareButton.append(ShareButton({ title: post.title }));
+	}
 
 	// Apply OleWind after rendering
 	window.applyOleWind?.();
