@@ -1,53 +1,13 @@
 import { Navbar } from "../assets/js/components/Navbar.js";
 import { Footer } from "../assets/js/components/Footer.js";
-import { getById, getAllPost } from "../assets/api/post.js";
 import { getRepoBase } from "../assets/js/utils/repoBase.js";
 import { ShareButton } from "../assets/js/components/ShareButton.js";
+import { slugify } from "../assets/js/utils/slug.js";
+import { getQueryParam, getSlugFromPath, setPrettyPostPath } from "../assets/js/utils/url.js";
+import { findPost } from "../assets/js/utils/findPost.js";
 
 // Base path
 const base = getRepoBase();
-
-// Turn a title into a url-friendly slug
-function slugify(s = "") {
-	return String(s)
-		.toLowerCase()
-		.trim()
-		.replace(/[^a-z0-9]+/g, "-")
-		.replace(/(^-|-$)/g, "");
-}
-
-// Read post id from query
-function getPostIdFromUrl() {
-	return new URLSearchParams(window.location.search).get("id");
-}
-
-// Read slug from query
-function getSlugFromUrl() {
-	return new URLSearchParams(window.location.search).get("slug");
-}
-
-// Read slug from path
-function getSlugFromPath() {
-	const path = window.location.pathname;
-	const marker = "/post/";
-	const idx = path.indexOf(marker);
-	if (idx === -1) return null;
-
-	const after = path.slice(idx + marker.length);
-	const seg = after.split("/")[0];
-
-	// Ignore /post/index.html and only accept real slugs
-	if (!seg || seg.includes(".html")) return null;
-	return seg;
-}
-
-// Update browser url to pretty slug without reloading
-function setPrettyPath(title) {
-	const slug = slugify(title);
-	if (!slug) return;
-
-	history.replaceState({}, "", `${base}post/${encodeURIComponent(slug)}`);
-}
 
 window.addEventListener("DOMContentLoaded", async () => {
 	// Navbar
@@ -59,22 +19,14 @@ window.addEventListener("DOMContentLoaded", async () => {
 	// Apply OleWind for injected components
 	window.applyOleWind?.();
 
-	const id = getPostIdFromUrl();
-	const slug = getSlugFromUrl() || getSlugFromPath();
+	// Read post id from query
+	const id = getQueryParam("id");
 
-	let post = null;
+	// Read slug from query
+	const slug = getQueryParam("slug") || getSlugFromPath();
 
-	// If id exists, fetch one post directly
-	if (id) {
-		const res = await getById(id);
-		post = res.data;
-	}
-	// If slug exists fetch all posts and match by slugified title
-	else if (slug) {
-		const res = await getAllPost();
-		const posts = res.data || [];
-		post = posts.find((p) => slugify(p.title) === slug) || null;
-	}
+	// Fetch post using either id or slug
+	const post = await findPost({ id, slug });
 
 	// If no post error
 	if (!post) {
@@ -98,7 +50,8 @@ window.addEventListener("DOMContentLoaded", async () => {
 		`Author: ${post.author?.name || post.author}`;
 
 	// Update URL to /post/<slug>
-	setPrettyPath(post.title);
+	const prettySlug = slugify(post.title);
+	setPrettyPostPath({ base, slug: prettySlug });
 
 	// Mount share button
 	const shareButton = document.getElementById("share-root");
