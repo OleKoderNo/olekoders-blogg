@@ -7,12 +7,11 @@ export function LinkButton({ href, label, variant = "primary", size = "md", extr
 export function SubmitButton({ label, variant = "primary", size = "md", extra = "" }) {
 	return baseButton("button", { label, variant, size, extra, type: "submit" });
 }
-
 // Shared stylings for buttons made with a element and button element
-function baseButton(tag, { href, label, variant, size, extra, type }) {
-	// Bade button style
+function baseButton(tag, { href, label, variant, size, extra, type, icon }) {
+	// Base button style
 	const base =
-		"inline-flex items-center justify-center font-bold cursor-pointer border border-charcoal rounded-md text-center no-underline";
+		"inline-flex items-center justify-center gap-2 font-bold cursor-pointer border border-charcoal rounded-md text-center no-underline";
 
 	// Color variants
 	const variants = {
@@ -34,8 +33,11 @@ function baseButton(tag, { href, label, variant, size, extra, type }) {
 	if (tag === "a") el.href = href;
 	if (tag === "button" && type) el.type = type;
 
+	// Optional icon
+	if (icon) el.append(icon);
+
 	// Button label
-	el.textContent = label;
+	el.append(label);
 
 	// Combine all classes
 	el.className = [base, variants[variant] ?? variants.primary, sizes[size] ?? sizes.md, extra].join(
